@@ -14,6 +14,8 @@ public class CharacterHealthController : MonoBehaviour, IDamageable, IHealable
     private Character _character;
     public Character Character { get { return (_character == null) ? _character = GetComponent<Character>() : _character; } }
 
+    private HealthBar _healthBar;
+
     private void OnEnable()
     {
         if (Managers.Instance == null)
@@ -36,9 +38,10 @@ public class CharacterHealthController : MonoBehaviour, IDamageable, IHealable
 
     private void Initialize()
     {
+        _healthBar = GetComponentInChildren<HealthBar>();
         if (Character.CharacterControllerType != CharacterControllerType.AI)
             return;
-
+        _healthBar = transform.parent.GetComponentInChildren<HealthBar>();
         _enemyScriptable = GetComponentInParent<AIBehaviour>().enemyScriptable;
         if (_enemyScriptable == null)
         {
@@ -51,6 +54,7 @@ public class CharacterHealthController : MonoBehaviour, IDamageable, IHealable
     private void ResetHealth()
     {
         CurrentHealth = MaxHealth;
+        _healthBar.ScaleHealthBar(1f);
     }
     
     public void Heal(int healAmount)
@@ -59,6 +63,8 @@ public class CharacterHealthController : MonoBehaviour, IDamageable, IHealable
         Character.OnCharacterHeal.Invoke();
         if (CurrentHealth >= MaxHealth)
             CurrentHealth = MaxHealth;
+        _healthBar.ScaleHealthBar((float)CurrentHealth / (float)MaxHealth);
+
     }
 
     public void Damage(int damageAmount)
@@ -71,6 +77,7 @@ public class CharacterHealthController : MonoBehaviour, IDamageable, IHealable
             Character.KillCharacter();
             CurrentHealth = 0;
         }
+        _healthBar.ScaleHealthBar((float)CurrentHealth / (float)MaxHealth);
         Debug.Log(gameObject.name + " Health: " + CurrentHealth);
     }
 }
