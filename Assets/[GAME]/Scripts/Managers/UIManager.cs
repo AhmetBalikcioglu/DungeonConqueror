@@ -10,10 +10,10 @@ public class UIManager : Singleton<UIManager>
 
     public void DamageTextCall(Vector3 pos, int damage)
     {
-        GameObject textGO = Instantiate(damageTextPrefab, pos + Vector3.up * 0.5f, Quaternion.identity);
+        GameObject textGO = Instantiate(damageTextPrefab, pos + Vector3.up, Quaternion.identity);
         textGO.transform.SetParent(FindObjectOfType<Canvas>().transform);
         textGO.GetComponent<TextMeshProUGUI>().SetText(damage.ToString());
-        textGO.transform.DOMoveY(pos.y + 0.5f, 1f);
+        textGO.transform.DOMoveY(textGO.transform.position.y + 1f, 1f);
         Destroy(textGO, 1f);
     }
 
