@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1332016628719808324}
   - component: {fileID: 1332016628719808323}
   - component: {fileID: 1332016628719808322}
+  - component: {fileID: 6920543799119965411}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -48,7 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02dc5a708c94f2c48903c4b17924a1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyScriptable: {fileID: 11400000, guid: 4dfae8ced985eeb4e8e0479c236483c3, type: 2}
 --- !u!135 &1332016628719808323
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -81,6 +81,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6920543799119965411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332016628719808321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ddcd340751f934d9a583cccd0c7190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1332016629728812127
 GameObject:
   m_ObjectHideFlags: 0

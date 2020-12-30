@@ -5,8 +5,6 @@ using DG.Tweening;
 
 public class AISwordBehaviour : MonoBehaviour
 {
-    private EnemyScriptableBase _enemyScriptable;
-
     private int _attackDamage = 3;
     private float _swordRadius = 0.71f;
     private float _attackRange = 1f;
@@ -14,29 +12,19 @@ public class AISwordBehaviour : MonoBehaviour
     private float _attackSpeed = 0.75f;
 
     private float _attackTimer;
-    private bool hit = false;
+    private bool _hit = false;
 
-    private void OnEnable()
+    public void Initialize(EnemyScriptableBase enemyScriptable)
     {
-        Initialize();
-    }
-    private void Initialize()
-    {
-        _enemyScriptable = GetComponentInParent<AIBehaviour>().enemyScriptable;
-        if (_enemyScriptable == null)
-        {
-            Destroy(transform.parent.gameObject);
-            return;
-        }
-        transform.name = _enemyScriptable.weaponName;
-        transform.localPosition = _enemyScriptable.weaponTransformPosition;
-        transform.localRotation = Quaternion.Euler(_enemyScriptable.weaponTransformRotation);
-        transform.localScale = _enemyScriptable.weaponTransformScale;
-        _attackDamage = _enemyScriptable.attackDamage;
-        _swordRadius = _enemyScriptable.swordRadius;
-        _attackRange = _enemyScriptable.attackRange;
-        _attackRate = _enemyScriptable.attackRate;
-        _attackSpeed = _enemyScriptable.attackSpeed;
+        transform.name = enemyScriptable.weaponName;
+        transform.localPosition = enemyScriptable.weaponTransformPosition;
+        transform.localRotation = Quaternion.Euler(enemyScriptable.weaponTransformRotation);
+        transform.localScale = enemyScriptable.weaponTransformScale;
+        _attackDamage = enemyScriptable.attackDamage;
+        _swordRadius = enemyScriptable.swordRadius;
+        _attackRange = enemyScriptable.attackRange;
+        _attackRate = enemyScriptable.attackRate;
+        _attackSpeed = enemyScriptable.attackSpeed;
     }
 
     public IEnumerator SwordAttackCo()

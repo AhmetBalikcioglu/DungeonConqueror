@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37f9ed668b9ff6f48b5ba34ee70a7757, type: 3}
+  m_Name: OrcBaby
+  m_EditorClassIdentifier: 
+  prefabName: OrcBaby
+  characterAnimator: {fileID: 9100000, guid: 721468e973f25bd44ac2aae54aecdb41, type: 2}
+  characterSprite: {fileID: 21300000, guid: 8ea736bcdaa388644a74247ef6e76069, type: 2}
+  weaponSprite: {fileID: 21300000, guid: 8d39459302049fb4bafbe5daf218a7b3, type: 2}
+  characterName: OrcBabyCharacter
+  movementSpeed: 3
+  health: 8
+  boxColliderCenter: {x: 0.062, y: 0.31, z: 0}
+  boxColliderSize: {x: 0.62, y: 0.62, z: 0.2}
+  weaponName: OrcBabyKnife
+  weaponTransformPosition: {x: 0.2, y: 0.2, z: 0}
+  weaponTransformRotation: {x: 0, y: 0, z: -60}
+  weaponTransformScale: {x: 1, y: 0.75, z: 1}
+  attackDamage: 2
+  swordRadius: 0.5
+  attackRange: 0.7
+  attackRate: 0.1
+  attackSpeed: 1

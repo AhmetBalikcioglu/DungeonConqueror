@@ -7,15 +7,9 @@ public class AIBehaviour : MonoBehaviour
 {
     AIState AICurrentState = AIState.idle;
 
-    public EnemyScriptableBase enemyScriptable;
-
     private float _moveSpeed = 2f;
     private float _moveTimer;
     private bool _inRange;
-    private void OnEnable()
-    {
-        Initialize();
-    }
 
     private void Update()
     {
@@ -33,13 +27,8 @@ public class AIBehaviour : MonoBehaviour
         }
     }
 
-    private void Initialize()
+    public void Initialize(EnemyScriptableBase enemyScriptable)
     {
-        if (enemyScriptable == null)
-        {
-            Destroy(gameObject);
-            return;
-        }
         GetComponentInChildren<Character>().transform.name = enemyScriptable.characterName;
         _moveSpeed = enemyScriptable.movementSpeed;
         gameObject.name = enemyScriptable.prefabName;
