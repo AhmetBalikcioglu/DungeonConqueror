@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CharacterHealthController : MonoBehaviour, IDamageable, IHealable
 {
-    private EnemyScriptableBase _enemyScriptable;
-
     private int _currentHealth;
     public int MaxHealth;
     
@@ -20,11 +18,10 @@ public class CharacterHealthController : MonoBehaviour, IDamageable, IHealable
     {
         if (Managers.Instance == null)
             return;
-        Initialize();
-        ResetHealth();
         Character.OnCharacterRevive.AddListener(ResetHealth);
         EventManager.OnGameStart.AddListener(ResetHealth);
-
+        if (Character.CharacterControllerType == CharacterControllerType.Player)
+            Initialize();
     }
 
     private void OnDisable()
@@ -35,20 +32,16 @@ public class CharacterHealthController : MonoBehaviour, IDamageable, IHealable
         Character.OnCharacterRevive.RemoveListener(ResetHealth);
         EventManager.OnGameStart.RemoveListener(ResetHealth);
     }
-
     private void Initialize()
     {
         _healthBar = GetComponentInChildren<HealthBar>();
-        if (Character.CharacterControllerType != CharacterControllerType.AI)
-            return;
+        ResetHealth();
+    }
+    public void Initialize(EnemyScriptableBase enemyScriptable)
+    {
         _healthBar = transform.parent.GetComponentInChildren<HealthBar>();
-        _enemyScriptable = GetComponentInParent<AIBehaviour>().enemyScriptable;
-        if (_enemyScriptable == null)
-        {
-            Destroy(transform.parent.gameObject);
-            return;
-        }
-        MaxHealth = _enemyScriptable.health;
+        MaxHealth = enemyScriptable.health;
+        ResetHealth();
     }
 
     private void ResetHealth()

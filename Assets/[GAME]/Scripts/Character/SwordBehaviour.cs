@@ -10,13 +10,14 @@ public class SwordBehaviour : MonoBehaviour
     
     private GameObject _playerCenter;
     public GameObject PlayerCenter { get { return _playerCenter == null ? _playerCenter = GameObject.Find("PlayerCenter") : _playerCenter; } }
+
     [SerializeField] private int _attackDamage = 3;
     [SerializeField] private float _swordRadius = 0.71f;
     [SerializeField] private float _attackRange = 1f;
     [SerializeField] private float _attackRate = 0.3f;
     [SerializeField] private float _attackSpeed = 0.75f;
     private float _attackTimer;
-    private bool hit = false;
+    private bool _hit = false;
 
     private Vector3 _worldPosition;
 
@@ -45,7 +46,7 @@ public class SwordBehaviour : MonoBehaviour
     {
         if (_attackTimer < _attackSpeed)
             return;
-        hit = false;
+        _hit = false;
         GetComponent<Collider>().enabled = true;
         _attackTimer = 0;
 
@@ -78,9 +79,9 @@ public class SwordBehaviour : MonoBehaviour
     {
         IDamageable IDamageable = other.GetComponent<IDamageable>();
 
-        if (IDamageable == null || hit)
+        if (IDamageable == null || _hit)
             return;
-        hit = true;
+        _hit = true;
         other.transform.GetComponentInParent<Animator>().SetTrigger("Hit");
         IDamageable.Damage(_attackDamage);
         
