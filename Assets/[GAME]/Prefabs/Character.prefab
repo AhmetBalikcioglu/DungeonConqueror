@@ -215,6 +215,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 0
+  _bloodEffect: {fileID: 716639264212847291, guid: 9a713399b138f06458f694f3554cdfd6,
+    type: 3}
+  gotHit: 0
 --- !u!65 &1332016629728812097
 BoxCollider:
   m_ObjectHideFlags: 0

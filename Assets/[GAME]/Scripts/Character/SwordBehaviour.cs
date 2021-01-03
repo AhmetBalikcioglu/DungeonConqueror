@@ -17,16 +17,16 @@ public class SwordBehaviour : MonoBehaviour
     [SerializeField] private float _attackRate = 0.3f;
     [SerializeField] private float _attackSpeed = 0.75f;
     private float _attackTimer;
-    private bool _hit = false;
 
     private Vector3 _worldPosition;
+    private List<CharacterHealthController> AttackedEnemies;
 
     private void OnEnable()
     {
         if (Managers.Instance == null)
             return;
         _attackTimer = _attackSpeed;
-
+        AttackedEnemies = new List<CharacterHealthController>();
         EventManager.OnPlayerAttack.AddListener(SwordAttack);
     }
     private void OnDisable()
@@ -46,13 +46,20 @@ public class SwordBehaviour : MonoBehaviour
     {
         if (_attackTimer < _attackSpeed)
             return;
-        _hit = false;
         GetComponent<Collider>().enabled = true;
         _attackTimer = 0;
 
         float swordRad = InputManager.Instance.CalculateAngle(_worldPosition, SwordHandle.transform.position) * Mathf.Deg2Rad;
         transform.DOLocalMove(new Vector3(Mathf.Cos(swordRad) * _attackRange, Mathf.Sin(swordRad) * _attackRange, 0), _attackRate);
-        transform.DOLocalMove(Vector3.zero, _attackRate).SetDelay(_attackRate).OnComplete(() => GetComponent<Collider>().enabled = false );
+        transform.DOLocalMove(Vector3.zero, _attackRate).SetDelay(_attackRate).OnComplete(
+            () => { GetComponent<Collider>().enabled = false;
+                foreach (var enemy in AttackedEnemies)
+                {
+                    enemy.gotHit = false;
+                }
+                AttackedEnemies.Clear();
+            }
+        );
     }
     private void SwordPointing()
     {
@@ -78,12 +85,12 @@ public class SwordBehaviour : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         IDamageable IDamageable = other.GetComponent<IDamageable>();
-
-        if (IDamageable == null || _hit)
+        CharacterHealthController CharacterHealthController = other.GetComponent<CharacterHealthController>();
+        if (IDamageable == null || CharacterHealthController.gotHit)
             return;
-        _hit = true;
+        CharacterHealthController.gotHit = true;
+        AttackedEnemies.Add(CharacterHealthController);
         other.transform.GetComponentInParent<Animator>().SetTrigger("Hit");
         IDamageable.Damage(_attackDamage);
-        
     }
 }

@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class CharacterHealthController : MonoBehaviour, IDamageable, IHealable
 {
-    private int _currentHealth;
-    public int MaxHealth;
+    private float _currentHealth;
+    public float MaxHealth;
     
-    public int CurrentHealth { get { return _currentHealth; } set { _currentHealth = value; } }
+    public float CurrentHealth { get { return _currentHealth; } set { _currentHealth = value; } }
 
     private Character _character;
     public Character Character { get { return (_character == null) ? _character = GetComponent<Character>() : _character; } }
 
+    private ParticleSystem _healingEffect;
+    [SerializeField] private GameObject _bloodEffect;
+
     private HealthBar _healthBar;
+
+    [HideInInspector] public bool gotHit;
 
     private void OnEnable()
     {
@@ -34,11 +39,13 @@ public class CharacterHealthController : MonoBehaviour, IDamageable, IHealable
     }
     private void Initialize()
     {
+        _healingEffect = GetComponentInChildren<ParticleSystem>();
         _healthBar = GetComponentInChildren<HealthBar>();
         ResetHealth();
     }
     public void Initialize(EnemyScriptableBase enemyScriptable)
     {
+        gotHit = false;
         _healthBar = transform.parent.GetComponentInChildren<HealthBar>();
         MaxHealth = enemyScriptable.health;
         ResetHealth();
@@ -50,27 +57,31 @@ public class CharacterHealthController : MonoBehaviour, IDamageable, IHealable
         _healthBar.ScaleHealthBar(1f);
     }
     
-    public void Heal(int healAmount)
+    public void Heal(float healAmount)
     {
         CurrentHealth += healAmount;
         Character.OnCharacterHeal.Invoke();
         if (CurrentHealth >= MaxHealth)
             CurrentHealth = MaxHealth;
-        _healthBar.ScaleHealthBar((float)CurrentHealth / (float)MaxHealth);
-
+        else if(!_healingEffect.isPlaying)
+            _healingEffect.Play();
+        _healthBar.ScaleHealthBar(CurrentHealth / MaxHealth);
     }
 
     public void Damage(int damageAmount)
     {
+        if (CurrentHealth <= 0)
+            return;
         CurrentHealth -= damageAmount;
         UIManager.Instance.DamageTextCall(transform.position, damageAmount);
+        Instantiate(_bloodEffect, transform.position, Quaternion.identity);
         Character.OnCharacterHit.Invoke();
         if (CurrentHealth <= 0)
         {
             Character.KillCharacter();
             CurrentHealth = 0;
         }
-        _healthBar.ScaleHealthBar((float)CurrentHealth / (float)MaxHealth);
-        Debug.Log(gameObject.name + " Health: " + CurrentHealth);
+        _healthBar.ScaleHealthBar(CurrentHealth / MaxHealth);
+        //Debug.Log(gameObject.name + " Health: " + CurrentHealth);
     }
 }

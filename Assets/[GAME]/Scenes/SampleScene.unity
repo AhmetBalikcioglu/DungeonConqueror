@@ -778,6 +778,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 500
+  _upClampY: 3
+  _downClampY: -4.8
+  _rightClampX: 7.5
+  _leftClampX: -7.5
 --- !u!4 &335958230
 Transform:
   m_ObjectHideFlags: 0
@@ -855,7 +859,7 @@ MonoBehaviour:
   - {x: 0, y: -2, z: 0}
   - {x: 5, y: -2, z: 0}
   - {x: 5, y: 1, z: 0}
-  _spawnTimer: 4
+  _spawnTimer: 2
 --- !u!1001 &387703416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2928,7 +2932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff42db4a57233f94e8b3b9d21c8312be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 1
+  healAmount: 0.1
 --- !u!65 &1085380253
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4832,6 +4836,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2981267847912835653, guid: b903f67b8a7933d4a9d23ff946a544b2,
+        type: 3}
+      propertyPath: _bloodEffect
+      value: 
+      objectReference: {fileID: 716639264212847291, guid: 9a713399b138f06458f694f3554cdfd6,
+        type: 3}
     - target: {fileID: 7006796482641427719, guid: b903f67b8a7933d4a9d23ff946a544b2,
         type: 3}
       propertyPath: m_Name

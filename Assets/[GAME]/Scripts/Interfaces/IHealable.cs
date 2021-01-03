@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IHealable
 {
-    void Heal(int healAmount);
+    void Heal(float healAmount);
 }
