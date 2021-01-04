@@ -91,7 +91,7 @@ public class Character : MonoBehaviour
         OnCharacterDie.Invoke();
 
         if (CharacterControllerType == CharacterControllerType.Player)
-            EventManager.OnLevelFail.Invoke();
+            GameManager.Instance.EndGame();
         else
         {
             GetComponentInParent<Animator>().SetTrigger("Death");

@@ -33,6 +33,7 @@ public class SpawnManager : MonoBehaviour
             SpawnEnemy();
         }
         timer = 0;
+        StartCoroutine(SpawnTimerDecreaseCo());
     }
 
     private void Update()
@@ -40,10 +41,21 @@ public class SpawnManager : MonoBehaviour
         if (!GameManager.Instance.IsGameStarted)
             return;
         timer += Time.deltaTime;
+
         if (timer < _spawnTimer)
             return;
         timer = 0;
         SpawnEnemy();
+    }
+
+    private IEnumerator SpawnTimerDecreaseCo()
+    {   
+        while (_spawnTimer > 0.1f)
+        {
+            yield return new WaitForSeconds(10f);
+            _spawnTimer -= 0.1f;
+        }
+        yield return new WaitForSeconds(0f);
     }
 
     void SpawnEnemy()
