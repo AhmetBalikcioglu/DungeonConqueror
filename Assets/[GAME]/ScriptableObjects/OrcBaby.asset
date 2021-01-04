@@ -17,7 +17,7 @@ MonoBehaviour:
   characterSprite: {fileID: 21300000, guid: 8ea736bcdaa388644a74247ef6e76069, type: 2}
   weaponSprite: {fileID: 21300000, guid: 8d39459302049fb4bafbe5daf218a7b3, type: 2}
   characterName: OrcBabyCharacter
-  movementSpeed: 3
+  movementSpeed: 4
   health: 8
   boxColliderCenter: {x: 0.062, y: 0.31, z: 0}
   boxColliderSize: {x: 0.62, y: 0.62, z: 0.2}
