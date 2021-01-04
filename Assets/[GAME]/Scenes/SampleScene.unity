@@ -936,6 +936,7 @@ MonoBehaviour:
   - {x: 0, y: -2, z: 0}
   - {x: 5, y: -2, z: 0}
   - {x: 5, y: 1, z: 0}
+  - {x: 0, y: 1, z: 0}
   _spawnTimer: 1
 --- !u!114 &335958235
 MonoBehaviour:
@@ -6559,12 +6560,12 @@ PrefabInstance:
     - target: {fileID: 7006796482641427720, guid: b903f67b8a7933d4a9d23ff946a544b2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7006796482641427720, guid: b903f67b8a7933d4a9d23ff946a544b2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.24
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7006796482641427720, guid: b903f67b8a7933d4a9d23ff946a544b2,
         type: 3}
