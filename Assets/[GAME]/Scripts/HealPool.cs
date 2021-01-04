@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealPool : MonoBehaviour
 {
-    [SerializeField] private int healAmount;
+    [SerializeField] private float healAmount;
     private void OnTriggerStay(Collider other)
     {
         if (other.GetComponent<IHealable>() != null && other.GetComponent<Character>().CharacterControllerType != CharacterControllerType.Player)

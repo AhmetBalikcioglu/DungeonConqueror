@@ -11,7 +11,22 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private float _spawnTimer;
     private float timer;
 
-    private void Start()
+    private void OnEnable()
+    {
+        if (Managers.Instance == null)
+            return;
+        EventManager.OnGameStart.AddListener(InitialSpawn);
+    }
+
+    private void OnDisable()
+    {
+        if (Managers.Instance == null)
+            return;
+        EventManager.OnGameStart.RemoveListener(InitialSpawn);
+
+    }
+
+    private void InitialSpawn()
     {
         for (int i = 0; i < spawnPoints.Count; i++)
         {
@@ -22,6 +37,8 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.Instance.IsGameStarted)
+            return;
         timer += Time.deltaTime;
         if (timer < _spawnTimer)
             return;

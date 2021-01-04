@@ -16,7 +16,7 @@ public class EnemyScriptableBase : ScriptableObject
     [Header("CharacterRelated")]
     public string characterName;
     public float movementSpeed;
-    public int health;
+    public float health;
     public Vector3 boxColliderCenter;
     public Vector3 boxColliderSize;
 

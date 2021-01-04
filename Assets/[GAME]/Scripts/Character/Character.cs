@@ -32,17 +32,31 @@ public class Character : MonoBehaviour
     private bool _isControlable;
     public bool IsControlable { get { return _isControlable; } set { _isControlable = value; } }
 
-    private void Initialize()
+    /*private void Initialize()
     {
         IsControlable = true;
         IsDead = false;
-    }
+    }*/
     private void OnEnable()
     {
         if (Managers.Instance == null)
             return;
-        Initialize();
+        //Initialize();
         CharacterManager.Instance.AddCharacter(this);
+        if (CharacterControllerType == CharacterControllerType.Player)
+        {
+            EventManager.OnGameStart.AddListener(() =>
+            {
+                IsControlable = true;
+                IsDead = false;
+            });
+            EventManager.OnGameEnd.AddListener(() =>
+            {
+                IsControlable = false;
+                IsDead = true;
+            });
+        }
+            
 
     }
 
@@ -52,7 +66,19 @@ public class Character : MonoBehaviour
             return;
 
         CharacterManager.Instance.RemoveCharacter(this);
-
+        if (CharacterControllerType == CharacterControllerType.Player)
+        {
+            EventManager.OnGameStart.RemoveListener(() =>
+            {
+                IsControlable = true;
+                IsDead = false;
+            });
+            EventManager.OnGameEnd.RemoveListener(() =>
+            {
+                IsControlable = false;
+                IsDead = true;
+            });
+        }
     }
 
     public void KillCharacter()
@@ -71,7 +97,6 @@ public class Character : MonoBehaviour
             GetComponentInParent<Animator>().SetTrigger("Death");
             Destroy(transform.parent.gameObject, 2f);
         }
-            
     }
 
     public void ReviveCharacter()
@@ -83,15 +108,4 @@ public class Character : MonoBehaviour
         IsControlable = true;
         OnCharacterRevive.Invoke();
     }
-
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        /*Icollectable icollectable = other.GetComponent<Icollectable>();
-
-        if (icollectable != null)
-            icollectable.Collect();*/
-    }
-    
-
 }
