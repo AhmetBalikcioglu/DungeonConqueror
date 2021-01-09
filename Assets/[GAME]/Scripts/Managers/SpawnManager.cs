@@ -8,8 +8,9 @@ public class SpawnManager : MonoBehaviour
     public List<EnemyScriptableBase> enemyTypes;
     public List<Vector3> spawnPoints;
 
-    [SerializeField] private float _spawnTimer;
-    private float timer;
+    [SerializeField] private float _spawnTimerMax;
+    private float _spawnTimer;
+    private float _timer;
 
     private void OnEnable()
     {
@@ -33,7 +34,8 @@ public class SpawnManager : MonoBehaviour
         {
             SpawnEnemy();
         }
-        timer = 0;
+        _timer = 0;
+        _spawnTimer = _spawnTimerMax;
         StartCoroutine(SpawnTimerDecreaseCo());
     }
 
@@ -41,11 +43,11 @@ public class SpawnManager : MonoBehaviour
     {
         if (!GameManager.Instance.IsGameStarted)
             return;
-        timer += Time.deltaTime;
+        _timer += Time.deltaTime;
 
-        if (timer < _spawnTimer)
+        if (_timer < _spawnTimer)
             return;
-        timer = 0;
+        _timer = 0;
         SpawnEnemy();
     }
 
