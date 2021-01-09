@@ -53,6 +53,9 @@ TagManager:
   - name: Character
     uniqueID: 2402536949
     locked: 0
+  - name: HideableObjects
+    uniqueID: 2254772905
+    locked: 0
   - name: UI
     uniqueID: 3447953899
     locked: 0

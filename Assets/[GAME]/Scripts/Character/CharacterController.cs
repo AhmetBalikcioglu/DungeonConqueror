@@ -8,6 +8,8 @@ public class CharacterController : MonoBehaviour, ICharacterController
     {
         if (Managers.Instance == null)
             return;
+
+        EventManager.OnGameStart.AddListener(ResetPosition);
     }
 
     private void OnDisable()
@@ -15,7 +17,14 @@ public class CharacterController : MonoBehaviour, ICharacterController
         if (Managers.Instance == null)
             return;
 
+        EventManager.OnGameStart.RemoveListener(ResetPosition);
     }
+
+    private void ResetPosition()
+    {
+        transform.position = Vector3.zero;
+    }
+
     public void Attack()
     {
         throw new System.NotImplementedException();

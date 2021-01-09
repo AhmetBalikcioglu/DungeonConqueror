@@ -6,7 +6,43 @@ using DG.Tweening;
 
 public class UIManager : Singleton<UIManager>
 {
+    public TextMeshProUGUI inGameScoreText;
+    public TextMeshProUGUI gameOverScoreText;
     public GameObject damageTextPrefab;
+
+    private void OnEnable()
+    {
+        if (Managers.Instance == null)
+            return;
+
+        EventManager.OnUIUpdate.AddListener(ScoreTextUpdate);
+        EventManager.OnGameEnd.AddListener(GameOverScoreTextUpdate);
+    }
+
+    private void OnDisable()
+    {
+        if (Managers.Instance == null)
+            return;
+
+        EventManager.OnUIUpdate.RemoveListener(ScoreTextUpdate);
+        EventManager.OnGameEnd.RemoveListener(GameOverScoreTextUpdate);
+    }
+
+    private void ScoreTextUpdate()
+    {
+        if (inGameScoreText == null)
+            return;
+
+        inGameScoreText.SetText("SCORE\n" + ScoreManager.Instance.Score.ToString());
+    }
+
+    private void GameOverScoreTextUpdate()
+    {
+        if (gameOverScoreText == null)
+            return;
+
+        gameOverScoreText.SetText("GAME OVER\n\nFINAL SCORE\n" + ScoreManager.Instance.Score.ToString());
+    }
 
     public void DamageTextCall(Vector3 pos, int damage)
     {

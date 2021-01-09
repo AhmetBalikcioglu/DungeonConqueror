@@ -30,3 +30,4 @@ MonoBehaviour:
   attackRange: 0.7
   attackRate: 0.1
   attackSpeed: 1
+  scorePoint: 10

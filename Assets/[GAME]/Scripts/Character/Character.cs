@@ -32,16 +32,11 @@ public class Character : MonoBehaviour
     private bool _isControlable;
     public bool IsControlable { get { return _isControlable; } set { _isControlable = value; } }
 
-    /*private void Initialize()
-    {
-        IsControlable = true;
-        IsDead = false;
-    }*/
+    
     private void OnEnable()
     {
         if (Managers.Instance == null)
             return;
-        //Initialize();
         CharacterManager.Instance.AddCharacter(this);
         if (CharacterControllerType == CharacterControllerType.Player)
         {
@@ -56,8 +51,8 @@ public class Character : MonoBehaviour
                 IsDead = true;
             });
         }
-            
-
+        else
+            EventManager.OnGameRestart.AddListener(Dispose);
     }
 
     private void OnDisable()
@@ -79,6 +74,8 @@ public class Character : MonoBehaviour
                 IsDead = true;
             });
         }
+        else
+            EventManager.OnGameRestart.RemoveListener(Dispose);
     }
 
     public void KillCharacter()
@@ -94,6 +91,7 @@ public class Character : MonoBehaviour
             GameManager.Instance.EndGame();
         else
         {
+            EventManager.OnEnemyDeath.Invoke(GetComponentInParent<AIBehaviour>().ScorePoint);
             GetComponentInParent<Animator>().SetTrigger("Death");
             Destroy(transform.parent.gameObject, 2f);
         }
@@ -107,5 +105,12 @@ public class Character : MonoBehaviour
         IsDead = false;
         IsControlable = true;
         OnCharacterRevive.Invoke();
+    }
+
+    public void Dispose()
+    {
+        if (CharacterControllerType == CharacterControllerType.Player)
+            return;
+        Destroy(transform.parent.gameObject);
     }
 }

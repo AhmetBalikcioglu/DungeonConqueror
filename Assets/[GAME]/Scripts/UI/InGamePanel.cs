@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenuPanel : Panel
+public class InGamePanel : Panel
 {
     private void OnEnable()
     {
         if (Managers.Instance == null)
             return;
 
-        EventManager.OnGameStart.AddListener(HidePanel);
-        EventManager.OnGameRestart.AddListener(ShowPanel);
+        EventManager.OnGameStart.AddListener(ShowPanel);
+        EventManager.OnGameEnd.AddListener(HidePanel);
     }
 
     private void OnDisable()
@@ -18,7 +18,7 @@ public class MainMenuPanel : Panel
         if (Managers.Instance == null)
             return;
 
-        EventManager.OnGameStart.RemoveListener(HidePanel);
-        EventManager.OnGameRestart.RemoveListener(ShowPanel);
+        EventManager.OnGameStart.RemoveListener(ShowPanel);
+        EventManager.OnGameEnd.RemoveListener(HidePanel);
     }
 }
