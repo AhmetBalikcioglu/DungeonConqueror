@@ -11,6 +11,9 @@ public class AIBehaviour : MonoBehaviour
     private float _moveTimer;
     private bool _inRange;
 
+    private float _scorePoint;
+    public float ScorePoint { get { return _scorePoint; } private set { _scorePoint = value; } }
+
     private void Update()
     {
         if (AICurrentState != AIState.moving || !GetComponentInChildren<Character>().IsControlable)
@@ -39,6 +42,7 @@ public class AIBehaviour : MonoBehaviour
         sprites[1].sprite = enemyScriptable.weaponSprite;
         GetComponentInChildren<BoxCollider>().center = enemyScriptable.boxColliderCenter;
         GetComponentInChildren<BoxCollider>().size = enemyScriptable.boxColliderSize;
+        ScorePoint = enemyScriptable.scorePoint;
     }
 
     public void InRange()
@@ -64,11 +68,11 @@ public class AIBehaviour : MonoBehaviour
 
         _inRange = false;
 
-        if (AICurrentState != AIState.attacking)
+        if (AICurrentState == AIState.moving)
         {
             AICurrentState = AIState.idle;
             if(GetComponent<Animator>() != null)
                 GetComponent<Animator>().SetTrigger("Idle");
-        }        
+        }
     }
 }

@@ -21,7 +21,16 @@ public class GameManager : Singleton<GameManager>
     {
         if (!IsGameStarted)
             return;
+
         IsGameStarted = false;
         EventManager.OnGameEnd.Invoke();
+    }
+
+    public void RestartGame()
+    {
+        if (IsGameStarted)
+            return;
+
+        EventManager.OnGameRestart.Invoke();
     }
 }

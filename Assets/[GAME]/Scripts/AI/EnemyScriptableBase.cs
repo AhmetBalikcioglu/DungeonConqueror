@@ -30,4 +30,7 @@ public class EnemyScriptableBase : ScriptableObject
     public float attackRange;
     public float attackRate;
     public float attackSpeed;
+
+    [Header("ScoreRelated")]
+    public float scorePoint;
 }

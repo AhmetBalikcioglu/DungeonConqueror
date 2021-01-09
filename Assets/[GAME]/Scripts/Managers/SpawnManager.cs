@@ -16,6 +16,7 @@ public class SpawnManager : MonoBehaviour
         if (Managers.Instance == null)
             return;
         EventManager.OnGameStart.AddListener(InitialSpawn);
+        EventManager.OnGameEnd.AddListener(() => StopAllCoroutines());
     }
 
     private void OnDisable()
@@ -23,7 +24,7 @@ public class SpawnManager : MonoBehaviour
         if (Managers.Instance == null)
             return;
         EventManager.OnGameStart.RemoveListener(InitialSpawn);
-
+        EventManager.OnGameEnd.RemoveListener(() => StopAllCoroutines());
     }
 
     private void InitialSpawn()
@@ -49,7 +50,7 @@ public class SpawnManager : MonoBehaviour
     }
 
     private IEnumerator SpawnTimerDecreaseCo()
-    {   
+    {
         while (_spawnTimer > 0.1f)
         {
             yield return new WaitForSeconds(10f);
