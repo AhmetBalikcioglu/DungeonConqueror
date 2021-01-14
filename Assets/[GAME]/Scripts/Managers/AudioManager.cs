@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine.Audio;
 using UnityEngine;
 
 public class AudioManager : Singleton<AudioManager>
 {
     public Sound[] sounds;
+
+    private bool _isSoundOn;
 
     void Awake()
     {
@@ -22,18 +25,24 @@ public class AudioManager : Singleton<AudioManager>
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
+        _isSoundOn = true;
     }
 
     private void OnEnable()
     {
         if (Managers.Instance == null)
             return;
+        EventManager.OnEnemyHit.AddListener(() => { AudioManager.Instance.Play("Hit"); });
+        EventManager.OnSoundOnOff.AddListener(SoundOnOff);
     }
 
     private void OnDisable()
     {
         if (Managers.Instance == null)
             return;
+        EventManager.OnEnemyHit.RemoveListener(() => { AudioManager.Instance.Play("Hit"); });
+        EventManager.OnSoundOnOff.RemoveListener(SoundOnOff);
+
     }
 
     void Start()
@@ -52,7 +61,7 @@ public class AudioManager : Singleton<AudioManager>
         s.source.Play();
     }
 
-    public void ChangeVolume(string name, bool isOn)
+    public void ChangeVolume(string name, float volume)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
 
@@ -61,13 +70,21 @@ public class AudioManager : Singleton<AudioManager>
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
-        if (isOn)
-        {
-            s.source.volume = 0f;
-        }
+        s.source.volume = volume;
+    }
+
+    private void SoundOnOff()
+    {
+        if (_isSoundOn)
+            for (int i = 0; i < sounds.Length; i++)
+            {
+                sounds[i].source.volume = 0f;
+            }
         else
-        {
-            s.source.volume = 0.05f;
-        }
+            for (int i = 0; i < sounds.Length; i++)
+            {
+                sounds[i].source.volume = sounds[i].volume;
+            }
+        _isSoundOn = !_isSoundOn;
     }
 }

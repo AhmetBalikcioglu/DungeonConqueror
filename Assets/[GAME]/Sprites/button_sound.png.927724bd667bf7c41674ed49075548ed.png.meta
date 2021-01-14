@@ -1,0 +1,290 @@
+fileFormatVersion: 2
+guid: dd960b0bc9f3e75468782265f1bc5b9d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4899623393727412120
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_0
+  - first:
+      213: -3927017457397032252
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_1
+  - first:
+      213: 1585040514867098779
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_2
+  - first:
+      213: -6790733469150070655
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_3
+  - first:
+      213: 4151661712155572242
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_4
+  - first:
+      213: 4460241509748777112
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_5
+  - first:
+      213: 3566846636457226073
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_6
+  - first:
+      213: -5201479970087525871
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_7
+  - first:
+      213: -8466347286026746763
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_8
+  - first:
+      213: -2753521430078126767
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_9
+  - first:
+      213: 6833537048126535393
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_10
+  - first:
+      213: 757932391399076976
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_11
+  - first:
+      213: -8488703986894496182
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_12
+  - first:
+      213: -7420463496058817438
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_13
+  - first:
+      213: -757497409389648306
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_14
+  - first:
+      213: 4198803660170621695
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_15
+  - first:
+      213: 2824249960333331032
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_16
+  - first:
+      213: -8027589420663441836
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_17
+  - first:
+      213: -8872775249711555450
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_18
+  - first:
+      213: -2570952695162350335
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_19
+  - first:
+      213: 4006017824297405432
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_20
+  - first:
+      213: 247649106308827692
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_21
+  - first:
+      213: 4893424810313024846
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_22
+  - first:
+      213: 6089699992496614461
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_23
+  - first:
+      213: -1152423579180778827
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_24
+  - first:
+      213: 3300273511011194075
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_25
+  - first:
+      213: 5501744560580648062
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_26
+  - first:
+      213: -2193167508339396259
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_27
+  - first:
+      213: -3885690314864340697
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_28
+  - first:
+      213: -8129621820790380193
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_29
+  - first:
+      213: 2076309743908815653
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_30
+  - first:
+      213: -3623166282998059096
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_31
+  - first:
+      213: 7179016287839557753
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_32
+  - first:
+      213: 1788193343604355549
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_33
+  - first:
+      213: 5540307437978218323
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_34
+  - first:
+      213: -6321187309638146278
+    second: button_sound.png.927724bd667bf7c41674ed49075548ed_35
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: button_sound.png.927724bd667bf7c41674ed49075548ed_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 897f05c6485fef340800000000000000
+      internalID: 4899623393727412120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_sound.png.927724bd667bf7c41674ed49075548ed_1
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ca9711cd6e6089c0800000000000000
+      internalID: -3927017457397032252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 73c091d99424da14eb217b1d5e7da0b2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

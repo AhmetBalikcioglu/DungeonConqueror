@@ -19,14 +19,15 @@ public class SwordBehaviour : MonoBehaviour
     private float _attackTimer;
 
     private Vector3 _worldPosition;
-    private List<CharacterHealthController> AttackedEnemies;
+    private List<CharacterHealthController> _attackedEnemies;
+    private bool _firstHit;
 
     private void OnEnable()
     {
         if (Managers.Instance == null)
             return;
         _attackTimer = _attackSpeed;
-        AttackedEnemies = new List<CharacterHealthController>();
+        _attackedEnemies = new List<CharacterHealthController>();
         EventManager.OnPlayerAttack.AddListener(SwordAttack);
     }
     private void OnDisable()
@@ -53,11 +54,12 @@ public class SwordBehaviour : MonoBehaviour
         transform.DOLocalMove(new Vector3(Mathf.Cos(swordRad) * _attackRange, Mathf.Sin(swordRad) * _attackRange, 0), _attackRate);
         transform.DOLocalMove(Vector3.zero, _attackRate).SetDelay(_attackRate).OnComplete(
             () => { GetComponent<Collider>().enabled = false;
-                foreach (var enemy in AttackedEnemies)
+                foreach (var enemy in _attackedEnemies)
                 {
                     enemy.gotHit = false;
                 }
-                AttackedEnemies.Clear();
+                _attackedEnemies.Clear();
+                _firstHit = false;
             }
         );
     }
@@ -88,8 +90,13 @@ public class SwordBehaviour : MonoBehaviour
         CharacterHealthController CharacterHealthController = other.GetComponent<CharacterHealthController>();
         if (IDamageable == null || CharacterHealthController.gotHit)
             return;
+        if (!_firstHit)
+        {
+            _firstHit = true;
+            EventManager.OnEnemyHit.Invoke();
+        }
         CharacterHealthController.gotHit = true;
-        AttackedEnemies.Add(CharacterHealthController);
+        _attackedEnemies.Add(CharacterHealthController);
         other.transform.GetComponentInParent<Animator>().SetTrigger("Hit");
         IDamageable.Damage(_attackDamage);
     }
