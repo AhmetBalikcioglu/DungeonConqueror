@@ -16,12 +16,7 @@ public class Character : MonoBehaviour
     public Collider Collider { get { return (_collider == null) ? _collider = GetComponent<Collider>() : _collider; } }
 
     #region Events
-    [HideInInspector]
-    public UnityEvent OnCharacterHit = new UnityEvent();
-    [HideInInspector]
-    public UnityEvent OnCharacterHeal = new UnityEvent();
-    [HideInInspector]
-    public UnityEvent OnCharacterDie = new UnityEvent();
+
     [HideInInspector]
     public UnityEvent OnCharacterRevive = new UnityEvent();
 
@@ -85,7 +80,6 @@ public class Character : MonoBehaviour
 
         IsDead = true;
         IsControlable = false;
-        OnCharacterDie.Invoke();
 
         if (CharacterControllerType == CharacterControllerType.Player)
             GameManager.Instance.EndGame();

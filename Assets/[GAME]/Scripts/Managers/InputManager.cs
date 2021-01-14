@@ -10,6 +10,22 @@ public class InputManager : Singleton<InputManager>
     [SerializeField] private float _rightClampX;
     [SerializeField] private float _leftClampX;
 
+    private void OnEnable()
+    {
+        if (Managers.Instance == null)
+            return;
+
+        EventManager.OnGameEnd.AddListener(ZeroVelocity);
+    }
+
+    private void OnDisable()
+    {
+        if (Managers.Instance == null)
+            return;
+
+        EventManager.OnGameEnd.RemoveListener(ZeroVelocity);
+    }
+
     private void Update()
     {
         if (Input.GetKey(KeyCode.Mouse0) && CharacterManager.Instance.Player.IsControlable)
@@ -42,8 +58,14 @@ public class InputManager : Singleton<InputManager>
         return direction;
     }
 
-    public float CalculateAngle(Vector3 firstPos, Vector3 secondPos)
+    public float CalculateAngle
+        (Vector3 firstPos, Vector3 secondPos)
     {
         return Mathf.Atan2(firstPos.y - secondPos.y, firstPos.x - secondPos.x) * 180 / Mathf.PI;
+    }
+
+    private void ZeroVelocity()
+    {
+        CharacterManager.Instance.Player.Rigidbody.velocity = Vector3.zero;
     }
 }

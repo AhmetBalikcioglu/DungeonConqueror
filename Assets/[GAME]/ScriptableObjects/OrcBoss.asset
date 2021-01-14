@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37f9ed668b9ff6f48b5ba34ee70a7757, type: 3}
   m_Name: OrcBoss
   m_EditorClassIdentifier: 
-  prefabName: OrcBoss
+  prefabName: Frankenstein
   characterAnimator: {fileID: 9100000, guid: 30c8e2fc41be10a4a805e7577bfe0b0d, type: 2}
   characterSprite: {fileID: 21300000, guid: 77b1b5c838fcbdc4d91d281fb401b586, type: 2}
   weaponSprite: {fileID: 21300000, guid: 1af90b7902336b04eba16ede9153d7af, type: 2}

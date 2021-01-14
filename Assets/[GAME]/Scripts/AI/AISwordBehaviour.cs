@@ -34,12 +34,6 @@ public class AISwordBehaviour : MonoBehaviour
         {
             GetComponentInParent<Animator>().SetTrigger("Attack");
         }
-        
-        /*transform.DOLocalMove(new Vector3(_swordRadius, _swordRadius / 2f, 0), _attackRate);
-        transform.DOLocalRotate(new Vector3(0, 0, -30f), _attackRate);
-
-        transform.DOLocalMove(Vector3.zero, _attackRate).SetDelay(_attackRate);
-        transform.DOLocalRotate(new Vector3(0, 0, -20f), _attackRate).SetDelay(_attackRate);*/
 
         if (Vector3.Distance(transform.parent.position, CharacterManager.Instance.Player.transform.position) <= _attackRange)
         {

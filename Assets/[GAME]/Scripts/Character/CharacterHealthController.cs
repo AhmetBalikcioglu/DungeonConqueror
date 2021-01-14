@@ -60,7 +60,6 @@ public class CharacterHealthController : MonoBehaviour, IDamageable, IHealable
     public void Heal(float healAmount)
     {
         CurrentHealth += healAmount;
-        Character.OnCharacterHeal.Invoke();
         if (CurrentHealth >= MaxHealth)
             CurrentHealth = MaxHealth;
         else if(!_healingEffect.isPlaying)
@@ -75,7 +74,6 @@ public class CharacterHealthController : MonoBehaviour, IDamageable, IHealable
         CurrentHealth -= damageAmount;
         UIManager.Instance.DamageTextCall(transform.position, damageAmount);
         Instantiate(_bloodEffect, transform.position, Quaternion.identity);
-        Character.OnCharacterHit.Invoke();
         if (CurrentHealth <= 0)
         {
             Character.KillCharacter();

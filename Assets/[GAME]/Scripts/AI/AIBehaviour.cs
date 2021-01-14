@@ -24,7 +24,6 @@ public class AIBehaviour : MonoBehaviour
 
         if (Vector3.Distance(transform.position, CharacterManager.Instance.Player.transform.position) < 0.5f)
         {
-            // AI ATTACK
             AICurrentState = AIState.attacking;
             StartCoroutine(GetComponentInChildren<AISwordBehaviour>().SwordAttackCo());
         }
