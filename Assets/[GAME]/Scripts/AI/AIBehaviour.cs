@@ -1,4 +1,17 @@
-﻿using System.Collections;
+﻿/****************************************************************************
+** SAKARYA ÜNİVERSİTESİ
+** BİLGİSAYAR VE BİLİŞİM BİLİMLERİ FAKÜLTESİ
+** BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ
+** TASARIM ÇALIŞMASI
+** 2020-2021 GÜZ DÖNEMİ
+**
+** ÖĞRETİM ÜYESİ..............: Prof.Dr. CEMİL ÖZ
+** ÖĞRENCİ ADI................: AHMET YAŞAR BALIKÇIOĞLU
+** ÖĞRENCİ NUMARASI...........: G1512.10001
+** TASARIMIN ALINDIĞI GRUP....: 2T
+****************************************************************************/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +29,7 @@ public class AIBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (AICurrentState != AIState.moving || !GetComponentInChildren<Character>().IsControlable)
+        if (AICurrentState != AIState.moving || !GetComponentInChildren<Character>().IsControllable)
             return;
 
         _moveTimer = _moveSpeed * Time.deltaTime;
@@ -29,6 +42,7 @@ public class AIBehaviour : MonoBehaviour
         }
     }
 
+    // Initializing base data
     public void Initialize(EnemyScriptableBase enemyScriptable)
     {
         GetComponentInChildren<Character>().transform.name = enemyScriptable.characterName;
@@ -44,12 +58,14 @@ public class AIBehaviour : MonoBehaviour
         ScorePoint = enemyScriptable.scorePoint;
     }
 
+    // Checking if still in range if so setting the current state to moving
     public void InRange()
     {
         if (_inRange)
             AICurrentState = AIState.moving;
     }
 
+    // Checking if the trigger is Player if so AI starts to move closer to Player
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.name != "PlayerCharacter")
@@ -60,6 +76,7 @@ public class AIBehaviour : MonoBehaviour
             GetComponent<Animator>().SetTrigger("Move");
     }
 
+    // Checking if the trigger is Player if so AI stops moving
     private void OnTriggerExit(Collider collision)
     {
         if (collision.name != "PlayerCharacter")

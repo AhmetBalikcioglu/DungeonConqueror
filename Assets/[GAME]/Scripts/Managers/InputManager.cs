@@ -1,4 +1,17 @@
-﻿using System.Collections;
+﻿/****************************************************************************
+** SAKARYA ÜNİVERSİTESİ
+** BİLGİSAYAR VE BİLİŞİM BİLİMLERİ FAKÜLTESİ
+** BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ
+** TASARIM ÇALIŞMASI
+** 2020-2021 GÜZ DÖNEMİ
+**
+** ÖĞRETİM ÜYESİ..............: Prof.Dr. CEMİL ÖZ
+** ÖĞRENCİ ADI................: AHMET YAŞAR BALIKÇIOĞLU
+** ÖĞRENCİ NUMARASI...........: G1512.10001
+** TASARIMIN ALINDIĞI GRUP....: 2T
+****************************************************************************/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,16 +39,19 @@ public class InputManager : Singleton<InputManager>
         EventManager.OnGameEnd.RemoveListener(ZeroVelocity);
     }
 
+    // If player is controllable and left mouse button is pressed then player attacks
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0) && CharacterManager.Instance.Player.IsControlable)
+        if (Input.GetKey(KeyCode.Mouse0) && CharacterManager.Instance.Player.IsControllable)
         {
             EventManager.OnPlayerAttack.Invoke();
         }
     }
+
+    // If player is controllable then player is moved according to users WASD inputs
     private void FixedUpdate()
     {
-        if (CharacterManager.Instance.Player.IsControlable)
+        if (CharacterManager.Instance.Player.IsControllable)
         {
             Vector3 input = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f);
 
@@ -44,6 +60,7 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
+    // Clamps the player to the given values so player wouldn't go out of the screen
     private Vector3 Clamp(Vector3 direction)
     {
         Vector3 playerPos = CharacterManager.Instance.Player.transform.position;
@@ -58,12 +75,13 @@ public class InputManager : Singleton<InputManager>
         return direction;
     }
 
-    public float CalculateAngle
-        (Vector3 firstPos, Vector3 secondPos)
+    // Calculates the angles between the given positions
+    public float CalculateAngle(Vector3 firstPos, Vector3 secondPos)
     {
         return Mathf.Atan2(firstPos.y - secondPos.y, firstPos.x - secondPos.x) * 180 / Mathf.PI;
     }
 
+    // Zeroes the players velocity
     private void ZeroVelocity()
     {
         CharacterManager.Instance.Player.Rigidbody.velocity = Vector3.zero;

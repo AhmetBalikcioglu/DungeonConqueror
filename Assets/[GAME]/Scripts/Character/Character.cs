@@ -1,4 +1,17 @@
-﻿using System.Collections;
+﻿/****************************************************************************
+** SAKARYA ÜNİVERSİTESİ
+** BİLGİSAYAR VE BİLİŞİM BİLİMLERİ FAKÜLTESİ
+** BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ
+** TASARIM ÇALIŞMASI
+** 2020-2021 GÜZ DÖNEMİ
+**
+** ÖĞRETİM ÜYESİ..............: Prof.Dr. CEMİL ÖZ
+** ÖĞRENCİ ADI................: AHMET YAŞAR BALIKÇIOĞLU
+** ÖĞRENCİ NUMARASI...........: G1512.10001
+** TASARIMIN ALINDIĞI GRUP....: 2T
+****************************************************************************/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -24,8 +37,8 @@ public class Character : MonoBehaviour
 
     private bool _isDead;
     public bool IsDead { get { return (_isDead); } set { _isDead = value; } }
-    private bool _isControlable;
-    public bool IsControlable { get { return _isControlable; } set { _isControlable = value; } }
+    private bool _isControllable;
+    public bool IsControllable { get { return _isControllable; } set { _isControllable = value; } }
 
     
     private void OnEnable()
@@ -37,12 +50,12 @@ public class Character : MonoBehaviour
         {
             EventManager.OnGameStart.AddListener(() =>
             {
-                IsControlable = true;
+                IsControllable = true;
                 IsDead = false;
             });
             EventManager.OnGameEnd.AddListener(() =>
             {
-                IsControlable = false;
+                IsControllable = false;
                 IsDead = true;
             });
         }
@@ -60,12 +73,12 @@ public class Character : MonoBehaviour
         {
             EventManager.OnGameStart.RemoveListener(() =>
             {
-                IsControlable = true;
+                IsControllable = true;
                 IsDead = false;
             });
             EventManager.OnGameEnd.RemoveListener(() =>
             {
-                IsControlable = false;
+                IsControllable = false;
                 IsDead = true;
             });
         }
@@ -73,13 +86,14 @@ public class Character : MonoBehaviour
             EventManager.OnGameRestart.RemoveListener(Dispose);
     }
 
+    // Killing the character
     public void KillCharacter()
     {
         if (IsDead)
             return;
 
         IsDead = true;
-        IsControlable = false;
+        IsControllable = false;
 
         if (CharacterControllerType == CharacterControllerType.Player)
             GameManager.Instance.EndGame();
@@ -91,16 +105,18 @@ public class Character : MonoBehaviour
         }
     }
 
+    // Reviving the character
     public void ReviveCharacter()
     {
         if (!IsDead)
             return;
 
         IsDead = false;
-        IsControlable = true;
+        IsControllable = true;
         OnCharacterRevive.Invoke();
     }
 
+    // Deleting the AIs
     public void Dispose()
     {
         if (CharacterControllerType == CharacterControllerType.Player)

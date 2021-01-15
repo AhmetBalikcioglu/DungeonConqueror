@@ -14,17 +14,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class CharacterInitializer : MonoBehaviour
+public class QuitButton : Button
 {
-    // Initializing all of the AI data
-    public void Initialize(EnemyScriptableBase enemyScriptable)
+    protected override void OnEnable()
     {
-        GetComponentInChildren<Character>().CharacterControllerType = CharacterControllerType.AI;
-        GetComponentInChildren<Character>().IsControllable = true;
-        GetComponentInChildren<Character>().IsDead = false;
-        GetComponent<AIBehaviour>().Initialize(enemyScriptable);
-        GetComponentInChildren<AISwordBehaviour>().Initialize(enemyScriptable);
-        GetComponentInChildren<CharacterHealthController>().Initialize(enemyScriptable);
+        base.OnEnable();
+        onClick.AddListener(QuitGame);
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnEnable();
+        onClick.RemoveListener(QuitGame);
+    }
+
+    // Quits the game
+    private void QuitGame()
+    {
+        Application.Quit();
     }
 }

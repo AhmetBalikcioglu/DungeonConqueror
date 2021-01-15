@@ -1,4 +1,17 @@
-﻿using System.Collections;
+﻿/****************************************************************************
+** SAKARYA ÜNİVERSİTESİ
+** BİLGİSAYAR VE BİLİŞİM BİLİMLERİ FAKÜLTESİ
+** BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ
+** TASARIM ÇALIŞMASI
+** 2020-2021 GÜZ DÖNEMİ
+**
+** ÖĞRETİM ÜYESİ..............: Prof.Dr. CEMİL ÖZ
+** ÖĞRENCİ ADI................: AHMET YAŞAR BALIKÇIOĞLU
+** ÖĞRENCİ NUMARASI...........: G1512.10001
+** TASARIMIN ALINDIĞI GRUP....: 2T
+****************************************************************************/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -43,6 +56,8 @@ public class SwordBehaviour : MonoBehaviour
         SwordPointing();
         _attackTimer += Time.deltaTime;
     }
+
+    // Swords collider is enabled and it is swinged using DOTween. When the animation ends collider is disabled and attacked enemies list is cleared
     public void SwordAttack()
     {
         if (_attackTimer < _attackSpeed)
@@ -63,6 +78,8 @@ public class SwordBehaviour : MonoBehaviour
             }
         );
     }
+
+    // Sword is pointing to the mouse position
     private void SwordPointing()
     {
         Vector3 mousePos = Input.mousePosition;
@@ -73,17 +90,21 @@ public class SwordBehaviour : MonoBehaviour
         SwordAngleSet();
     }
 
+    // Swords handle position is set in a certain radius between the player and mouse position
     private void SwordHandlePosSet()
     {
         float swordRad = InputManager.Instance.CalculateAngle(_worldPosition, PlayerCenter.transform.position) * Mathf.Deg2Rad;
         SwordHandle.transform.localPosition = new Vector3(Mathf.Cos(swordRad) * _swordRadius, Mathf.Sin(swordRad) * _swordRadius, 0);
     }
 
+    // Swords angle is set between the handle and the mouse position
     private void SwordAngleSet()
     {
         float swordAngle = InputManager.Instance.CalculateAngle(_worldPosition, SwordHandle.transform.position);
         transform.localRotation = Quaternion.Euler(new Vector3(0, 0, swordAngle - 90f));
     }
+
+    // Checking if the trigger can be damageable if so damage function is called and the damaged AI is added to the attackedEnemies list
     private void OnTriggerEnter(Collider other)
     {
         IDamageable IDamageable = other.GetComponent<IDamageable>();

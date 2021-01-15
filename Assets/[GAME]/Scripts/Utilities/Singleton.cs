@@ -1,4 +1,17 @@
-﻿using System;
+﻿/****************************************************************************
+** SAKARYA ÜNİVERSİTESİ
+** BİLGİSAYAR VE BİLİŞİM BİLİMLERİ FAKÜLTESİ
+** BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ
+** TASARIM ÇALIŞMASI
+** 2020-2021 GÜZ DÖNEMİ
+**
+** ÖĞRETİM ÜYESİ..............: Prof.Dr. CEMİL ÖZ
+** ÖĞRENCİ ADI................: AHMET YAŞAR BALIKÇIOĞLU
+** ÖĞRENCİ NUMARASI...........: G1512.10001
+** TASARIMIN ALINDIĞI GRUP....: 2T
+****************************************************************************/
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -16,14 +29,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         get
         {
-            //if (applicationIsQuitting)
-            //{
-            //    Debug.LogWarning("[Singleton] Instance '" + typeof(T) +
-            //        "' already destroyed on application quit." +
-            //        " Won't create again - returning null.");
-            //    return null;
-            //}
-
             lock (_lock)
             {
                 if (_instance == null)
@@ -36,11 +41,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                             " - there should never be more than 1 singleton!" +
                             " Reopening the Init scene and destroying all instances");
 
-                        //var allInstances = FindObjectsOfType(typeof(T));
-                        //for (int i = 0; i < allInstances.Length; i++)
-                        //{
-                        //    Destroy(allInstances[i]);
-                        //}
                         return null;
                     }
                 }
