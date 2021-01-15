@@ -1,4 +1,17 @@
-﻿using System.Collections;
+﻿/****************************************************************************
+** SAKARYA ÜNİVERSİTESİ
+** BİLGİSAYAR VE BİLİŞİM BİLİMLERİ FAKÜLTESİ
+** BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ
+** TASARIM ÇALIŞMASI
+** 2020-2021 GÜZ DÖNEMİ
+**
+** ÖĞRETİM ÜYESİ..............: Prof.Dr. CEMİL ÖZ
+** ÖĞRENCİ ADI................: AHMET YAŞAR BALIKÇIOĞLU
+** ÖĞRENCİ NUMARASI...........: G1512.10001
+** TASARIMIN ALINDIĞI GRUP....: 2T
+****************************************************************************/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,6 +41,7 @@ public class SpawnManager : MonoBehaviour
         EventManager.OnGameEnd.RemoveListener(() => StopAllCoroutines());
     }
 
+    // Spawns spawnPoint count of enemies on start and starts SpawnTimerDecreaseCo
     private void InitialSpawn()
     {
         for (int i = 0; i < spawnPoints.Count; i++)
@@ -39,6 +53,7 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnTimerDecreaseCo());
     }
 
+    // Spawns enemies on timer
     private void Update()
     {
         if (!GameManager.Instance.IsGameStarted)
@@ -51,6 +66,7 @@ public class SpawnManager : MonoBehaviour
         SpawnEnemy();
     }
 
+    // Decreases spawnTimer by 0.1 every 10 seconds till it reaches 0.1
     private IEnumerator SpawnTimerDecreaseCo()
     {
         while (_spawnTimer > 0.1f)
@@ -61,6 +77,7 @@ public class SpawnManager : MonoBehaviour
         yield return new WaitForSeconds(0f);
     }
 
+    // Spawns a random enemy on a random spawn point
     void SpawnEnemy()
     {
         int randomSpawnPoint = Random.Range(0, spawnPoints.Count);

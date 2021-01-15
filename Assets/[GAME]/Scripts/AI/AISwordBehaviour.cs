@@ -1,4 +1,17 @@
-﻿using System.Collections;
+﻿/****************************************************************************
+** SAKARYA ÜNİVERSİTESİ
+** BİLGİSAYAR VE BİLİŞİM BİLİMLERİ FAKÜLTESİ
+** BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ
+** TASARIM ÇALIŞMASI
+** 2020-2021 GÜZ DÖNEMİ
+**
+** ÖĞRETİM ÜYESİ..............: Prof.Dr. CEMİL ÖZ
+** ÖĞRENCİ ADI................: AHMET YAŞAR BALIKÇIOĞLU
+** ÖĞRENCİ NUMARASI...........: G1512.10001
+** TASARIMIN ALINDIĞI GRUP....: 2T
+****************************************************************************/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -14,6 +27,8 @@ public class AISwordBehaviour : MonoBehaviour
     private float _attackTimer;
     private bool _hit = false;
 
+
+    // Initializing base data
     public void Initialize(EnemyScriptableBase enemyScriptable)
     {
         transform.name = enemyScriptable.weaponName;
@@ -27,6 +42,7 @@ public class AISwordBehaviour : MonoBehaviour
         _attackSpeed = enemyScriptable.attackSpeed;
     }
 
+    // AI starts attacking to the Player. After a certain amount of time if the Player is still in AttackRange, Player gets damaged
     public IEnumerator SwordAttackCo()
     {
         yield return new WaitForSeconds(_attackRate);

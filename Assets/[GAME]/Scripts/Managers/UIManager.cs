@@ -1,4 +1,17 @@
-﻿using System.Collections;
+﻿/****************************************************************************
+** SAKARYA ÜNİVERSİTESİ
+** BİLGİSAYAR VE BİLİŞİM BİLİMLERİ FAKÜLTESİ
+** BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ
+** TASARIM ÇALIŞMASI
+** 2020-2021 GÜZ DÖNEMİ
+**
+** ÖĞRETİM ÜYESİ..............: Prof.Dr. CEMİL ÖZ
+** ÖĞRENCİ ADI................: AHMET YAŞAR BALIKÇIOĞLU
+** ÖĞRENCİ NUMARASI...........: G1512.10001
+** TASARIMIN ALINDIĞI GRUP....: 2T
+****************************************************************************/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -28,6 +41,7 @@ public class UIManager : Singleton<UIManager>
         EventManager.OnGameEnd.RemoveListener(GameOverScoreTextUpdate);
     }
 
+    // Updates the score text
     private void ScoreTextUpdate()
     {
         if (inGameScoreText == null)
@@ -36,6 +50,7 @@ public class UIManager : Singleton<UIManager>
         inGameScoreText.SetText("SCORE\n" + ScoreManager.Instance.Score.ToString());
     }
 
+    // Updates the Game over screen score text
     private void GameOverScoreTextUpdate()
     {
         if (gameOverScoreText == null)
@@ -44,6 +59,7 @@ public class UIManager : Singleton<UIManager>
         gameOverScoreText.SetText("GAME OVER\n\nFINAL SCORE\n" + ScoreManager.Instance.Score.ToString());
     }
 
+    // Instantiates the damageTextPrefab on the given position with the text updated by the given damage amount
     public void DamageTextCall(Vector3 pos, int damage)
     {
         GameObject textGO = Instantiate(damageTextPrefab, pos + Vector3.up, Quaternion.identity);
